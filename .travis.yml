@@ -36,4 +36,4 @@ install:
   - pip install librosa
 
 script:
-  - python aspeq.py
+  - python aspeq.py --mixes=1
