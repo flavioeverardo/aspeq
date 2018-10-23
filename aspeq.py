@@ -97,7 +97,7 @@ def main():
     sr = 44100.0       # Sample Rate
     N  = args.samples  # FFT size or Number of Samples
     M  = N             # Window size 
-    H  = M/64          # Hop size
+    H  = int(M/64)     # Hop size
     B  = args.erb      # ERB Bands
     low_lim = 20       # centre freq. of lowest filter
     high_lim = sr / 2  # centre freq. of highest filter
