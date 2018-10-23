@@ -167,7 +167,7 @@ def parse_answer_sets_to_plan(file, tracks, answers, center_freqs, bandwidths):
             q_factor = freq/bandw
 
             plan_line = "%s:%s %s Hz, %s, %.1f dB  Q %.2f, from: %.1f dB, to: %.1f dB"%(track+1, tracks[track], int(ceil(freq)), eq_op, diff_db, q_factor, start_db, goal_db)
-            print plan_line
+            print(plan_line)
             file.write(plan_line+"\n")
 
             if str(eq_op) == "cut":
