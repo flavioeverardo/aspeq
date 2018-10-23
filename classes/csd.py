@@ -20,7 +20,7 @@ Build Csound files including header, instruments with eq and without eq and scor
 def create_header(csd_file, destiny_dir, csdfile):
 
     wav_filename = "%s%s.wav"%(destiny_dir, csdfile)
-    print "create csd file: %s"%csdfile
+    print("create csd file: %s"%csdfile)
 
     csd_file.write("<CsoundSynthesizer>\n")
     csd_file.write("<CsOptions>\n")
@@ -72,7 +72,7 @@ def create_footer(csd_file):
     csd_file.write("</CsoundSynthesizer>\n")
 
 def render(path, csound_file):
-    print "render csound file to wav"
+    print("render csound file to wav")
     command = "csound %s/%s -O null"%(path,csound_file)
     os.system(command)
 

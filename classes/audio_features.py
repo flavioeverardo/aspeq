@@ -12,7 +12,7 @@ flavio.everardo@cs.uni-potsdam.de
 ## Imports
 import numpy as np
 from librosa import load, stft, magphase
-from classes import erb as erb
+from . import erb as erb
 from math import ceil, log, sqrt
 import os
 import matplotlib
