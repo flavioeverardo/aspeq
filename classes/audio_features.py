@@ -16,13 +16,13 @@ from . import erb as erb
 from math import ceil, log, sqrt
 import os
 import matplotlib
-from sys import platform
-if platform == "linux" or platform == "linux2":
+#from sys import platform
+#if platform == "linux" or platform == "linux2":
     # Linux
-    matplotlib.use('agg')
-elif platform == "darwin":
+#    matplotlib.use('agg')
+#elif platform == "darwin":
     # OS X
-    matplotlib.use('TkAgg')
+matplotlib.use('agg')
 import matplotlib.pyplot as plt
 
 
@@ -166,7 +166,7 @@ def parse_answer_sets_to_plan(file, tracks, answers, center_freqs, bandwidths):
             bandw    = bandwidths[index-1]
             q_factor = freq/bandw
 
-            plan_line = "%s:%s %s Hz, %s, %.1f dB  Q %.2f, from: %.1f dB, to: %.1f dB"%(track+1, tracks[track], int(ceil(freq)), eq_op, diff_db, q_factor, start_db, goal_db)
+            plan_line = "%s:%s %s Hz, %s, %.1f dB  Q %.2f"%(track+1, tracks[track], int(ceil(freq)), eq_op, diff_db, q_factor)#, start_db, goal_db)
             print(plan_line)
             file.write(plan_line+"\n")
 

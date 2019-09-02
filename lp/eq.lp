@@ -30,7 +30,7 @@ shared_band(I1,B) :- essential_band(I1,B), essential_band(I2,B), I1 != I2.
 _essential_band(I,B) :- not shared_band(I,B), essential_band(I,B).
 
 %% Get all the tracks from the erb atoms
-track(I) :- erb_band(I,_,_).
+%track(I) :- erb_band(I,_,_).
 
 %% Band detected to be Eqd... This must be part of the instance
 eq_band(B) :- _essential_band(_,B).
@@ -53,8 +53,8 @@ mask(Masker,Maskee,B) :- masking_coefficient(B,Masker,Maskee,S), S >= masking_fa
 
 %% The code after this point is executed if exist at least one masking issue.!!!!!!!!!!!!!!!!!!!!!!!!!!!
 %% Tracks involved in the masking process after the masking coefficient is calculated
-mask(Masker,B) :- mask(Masker,Maskee,B).
-mask(Maskee,B) :- mask(Masker,Maskee,B).
+%mask(Masker,B) :- mask(Masker,Maskee,B).
+%mask(Maskee,B) :- mask(Masker,Maskee,B).
 
 %% If exist masking... Find another configuration for Masker and Maskee
 %% This new configuration can cut the masker, boost the maskee or both (mirror eq).
@@ -67,12 +67,12 @@ mask(Maskee,B) :- mask(Masker,Maskee,B).
 %% In other words, propose new amplitude levels for the masker and the maskee.
 %% Propose less amplitude for the masker and higher for the maskee
 %% The goal is to propose new amplitudes per band without changing the intensity of the frequency band
-freq_band_amplitude(Masker,B,A) :-    cut(Masker,B,P,C,A), mask(Masker,B).
-freq_band_amplitude(Maskee,B,A) :-  boost(Maskee,B,P,C,A), mask(Maskee,B).
+freq_band_amplitude(Masker,B,A) :-    cut(Masker,B,P,C,A), mask(Masker,_,B).
+freq_band_amplitude(Maskee,B,A) :-  boost(Maskee,B,P,C,A), mask(_,Maskee,B).
 
 %% By pass the non eqd tracks per essential frequency band
 %% This rule comes from tracks not involved in the masking process
-freq_band_amplitude(M,B,P) :- erb_band(M,B,P), not   cut_masker(M,B); not boost_maskee(M,B), eq_band(B), mask(M,B).
+freq_band_amplitude(M,B,P) :- erb_band(M,B,P), not   cut_masker(M,B); not boost_maskee(M,B), eq_band(B).%, mask(M,B).
 
 %% Check the masking coefficient per band after equalization 
 masking_coefficient_after_eq(B,Masker,Maskee,100-(|P1-P2|)) :- eq_band(B), freq_band_amplitude(Masker,B,P1), freq_band_amplitude(Maskee,B,P2), mask(Masker,Maskee,B), Masker != Maskee.
@@ -82,9 +82,9 @@ masking_coefficient_after_eq(B,Masker,Maskee,100-(|P1-P2|)) :- eq_band(B), freq_
 :- masking_coefficient_after_eq(B,Masker,Maskee,S), S >= masking_factor.
 
 %% Not valid negative cuts
-:- cut(I,B,IP,A,RP), RP <= 0.
+:- cut(_,_,_,_,RP), RP <= 0.
 %% Not valid boost above 100 or 1.0 linear amplitude
-:- boost(I,B,IP,A,RP), RP > 100.
+:- boost(_,_,_,_,RP), RP > 100.
 
 
 %#show essential_band/2.

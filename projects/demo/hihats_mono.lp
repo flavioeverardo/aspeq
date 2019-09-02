@@ -30,6 +30,7 @@ erb_band(2,25,25).
 erb_band(2,26,17).
 erb_band(2,27,7).
 erb_band(2,28,86).
+essential_band(2,28).
 erb_band(2,29,96).
 essential_band(2,29).
 erb_band(2,30,100).
