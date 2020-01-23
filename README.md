@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/flavioeverardo/aspeq.svg?branch=master)](https://travis-ci.com/flavioeverardo/aspeq)
+
 # aspeq
 Masking reduction using Answer Set Programming
 
