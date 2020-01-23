@@ -16,7 +16,7 @@ import contextlib
 from classes import erb
 from classes import audio_features as af
 from classes import csd
-from classes.count_propagator import Propagator
+#from classes.count_propagator import Propagator
 
 """ 
 Parse Arguments 
@@ -37,9 +37,9 @@ Get help/report bugs via : flavio.everardo@cs.uni-potsdam.de
     ## Input related to uniform solving and sampling
     basic_args = parser.add_argument_group("Basic Options")
 
-    parser.add_argument("--benchmarks", action='store_true',
+    parser.add_argument("--benchmarks", action='store_true', default=False,
                         help="Generate benchmarks only, no grounding or solving calls.")
-    parser.add_argument("--analyze", action='store_true',
+    parser.add_argument("--analyze", action='store_true', default=True,
                         help="Extract audio features. If false, aspeq uses the already calculated instances.")
     parser.add_argument("--mixes", type=int, default=1,
                         help="Number of desired answers/mixes. Default=1")
